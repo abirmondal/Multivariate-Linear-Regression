@@ -18,19 +18,20 @@ def gen_data(dimension, x_lower_range, x_higher_range, m_lower_range, m_higher_r
             m_item = random.uniform(m_lower_range, m_higher_range)
             m.append(m_item)
 
-        y = 0
+        y = x[0]
         for i in range(len(x)-1):
-            if i == 0:
-                y += x[i]
-            else:
-                y += m[i] * x[i]
+            y += m[i] * x[i+1]
+
         return_li.append(y)
+
         for i in x:
             return_li.append(i)
+
         data.append(return_li)
         slopes.append(m)
-    for i, j in zip(data, slopes):
-        print("data: ", i, "slopes: ", j)
+
+    # for i, j in zip(data, slopes):
+    #     print("data: ", i, "slopes: ", j)
 
     return data
 
