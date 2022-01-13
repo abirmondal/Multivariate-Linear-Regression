@@ -1,10 +1,12 @@
 from datagen import data
+import pandas
 
 
 def main():
     print("Hello World")
-    dataSet = data.gen_data(2, 10, 20, 2, 4)
-    print(dataSet)
+    data.gen_data(2, 10, 20, 5, 8)
+    pr = pandas.read_csv("data.csv")
+    print(pr.values)
 
 
 if __name__ == '__main__':
