@@ -2,7 +2,7 @@ import random
 import numpy as np
 
 
-def gen_data(dimension):
+def gen_data(dimension, x_lower_range, x_higher_range, y_lower_range, y_higher_range):
     data = []
     slopes = []  # incase if needes
     # y = c + m1x1 + m2x2 + .....
@@ -11,11 +11,11 @@ def gen_data(dimension):
         x = []
         m = []
         for i in range(dimension - 1):
-            x_item = random.uniform(10, 20)
+            x_item = random.uniform(x_lower_range, x_higher_range)
             x.append(x_item)
 
         for i in range(dimension - 2):
-            m_item = random.uniform(2, 8)
+            m_item = random.uniform(y_lower_range, y_higher_range)
             m.append(m_item)
 
         y = 0
@@ -35,6 +35,7 @@ def gen_data(dimension):
     return data
 
 
-test = gen_data(5)
-print("The final data generated is: ")
-print(test)
+if __name__ == "main":
+    test = gen_data(5)
+    print("The final data generated is: ")
+    print(test)
