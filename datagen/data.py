@@ -1,4 +1,5 @@
 import random
+import pandas as pd
 
 
 def gen_data(dimension, x_lower_range, x_higher_range, m_lower_range, m_higher_range):
@@ -8,25 +9,38 @@ def gen_data(dimension, x_lower_range, x_higher_range, m_lower_range, m_higher_r
     for i in range(10):
         return_li = []
         x = []
-        m = []
-        for i in range(dimension):
+        m = []  # m0 is the constant
+        for i in range(dimension - 1):
             x_item = random.uniform(x_lower_range, x_higher_range)
             x.append(x_item)
 
-        for i in range(dimension - 1):
+        for i in range(dimension):
             m_item = random.uniform(m_lower_range, m_higher_range)
             m.append(m_item)
 
-        y = x[0]
-        for i in range(len(x)-1):
-            y += m[i] * x[i+1]
-
+        y = m[0]
+        for i in range(0, len(x)-1):
+            y += m[i+1] * x[i]
         return_li.append(y)
 
         for i in x:
             return_li.append(i)
-
         data.append(return_li)
         slopes.append(m)
 
-    return data
+    # adding heading to the csv
+    header_data = {}
+    Y = []
+    for i in data:
+        Y.append(i[0])
+    header_data.update({'Y': Y})
+
+    for i in range(1, len(data[0])):
+        X = []
+        for j in data:
+            X.append(j[i])
+        header_data.update({f"X{i-1}": X})
+
+    # writing data to csv file
+    df = pd.DataFrame(header_data)
+    df.to_csv('data.csv', header=True, index=False)
