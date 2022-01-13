@@ -3,4 +3,6 @@
 This is a code done from **scratch**.
 
 ## Features
-It generates a n-dimensional data set.
+
+- Generates n-dimensional data set.
+  [y, x0, x1, x2, ...]
