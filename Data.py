@@ -1,5 +1,4 @@
 import random
-import numpy as np
 
 
 def gen_data(dimension, x_lower_range, x_higher_range, m_lower_range, m_higher_range):
