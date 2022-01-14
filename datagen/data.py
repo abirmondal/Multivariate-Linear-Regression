@@ -2,11 +2,11 @@ import random
 import pandas as pd
 
 
-def gen_data(dimension, x_lower_range, x_higher_range, m_lower_range, m_higher_range):
+def gen_data(dimension, x_lower_range, x_higher_range, m_lower_range, m_higher_range, epoch):
     data = []
     slopes = []  # incase if needes
     # y = c + m1x1 + m2x2 + .....
-    for i in range(10):
+    for i in range(epoch):
         return_li = []
         x = []
         m = []  # m0 is the constant
@@ -40,6 +40,11 @@ def gen_data(dimension, x_lower_range, x_higher_range, m_lower_range, m_higher_r
         for j in data:
             X.append(j[i])
         header_data.update({f"X{i-1}": X})
+
+    Y = []
+    for i in data:
+        Y.append(i[0])
+    header_data.update({'Y': Y})
 
     # writing data to csv file
     df = pd.DataFrame(header_data)
